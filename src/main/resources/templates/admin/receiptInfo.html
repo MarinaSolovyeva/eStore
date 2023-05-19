@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Поступление</title>
+
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <h2> Поступление товаров </h2>
+    <table id="table-receipt" table class="table table-border table-striped">
+        <form th:action="@{/admin/receipt/saveReceipt}" th:object="${receipt}" method="Post">
+            <input type="hidden" th:field="*{id}"/>
+            <thead>
+            <tr>
+                <td> Артикул товара</td>
+                <td> Количество</td>
+            </tr>
+            </thead>
+            <tbody id="table-body">
+
+            <tr id="row">
+                <!--                                <td>-->
+                <!--                                    <select class="form-control" id="allGoods" name="allGoods">-->
+                <!--                                        <option value="">Товар</option>-->
+                <!--                                        <option th:each="good : ${allGoods}"-->
+                <!--                                                th:value="${good.id}"-->
+                <!--                                                th:text="${good.article}">-->
+                <!--                                            <input type="hidden" th:field="*{id}"/>-->
+                <!--                                        </option>-->
+                <!--                                    </select>-->
+                <!--                                </td>-->
+
+
+                <td>
+                    <select class="form-control" id="goodsAmount" name="goodsAmount">
+                        <option th:each="entry : ${goodsAmount}"
+                                th:value="${entry.key}"
+                                th:text="${entry.key}">
+                        </option>
+                    </select>
+
+                </td>
+                <td>
+<!--                    <input type="text" th:field="*{amountList}" placeholder="Количество товаров"-->
+<!--                           class="form-control col-4 mb-4"/>-->
+                </td>
+
+            </tr>
+            </tbody>
+            <button class="btn btn-primary" type="submit"> Сохранить поступление</button>
+        </form>
+
+        <button class="add" id="btn"> Add</button>
+    </table>
+    <br>
+    <br>
+    <a th:href="@{/admin/receipt}">Вернуться в корзину</a>
+
+
+    <script>
+
+        document.querySelector('.add').addEventListener('click', function () {
+            let body = document.querySelector('#table-body')
+            let row = body.querySelector('#row')
+            const tr = row.cloneNode(true);
+            document.getElementById('table-body').appendChild(tr)
+        })
+    </script>
+
+</div>
+</body>
+</html>

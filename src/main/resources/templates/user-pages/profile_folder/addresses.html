@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои адреса</title>
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <h2> Мои адреса </h2>
+
+    <table class="table table-border table-striped">
+        <thead>
+        <tr>
+            <th>Адрес</th>
+            <th>Комментарий к адресу</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="address : ${allAddress}">
+            <url var="updateButton" value="/updateAddress">
+                <param name="addressId" value="${address.id}"/>
+            </url>
+
+            <url var="deleteButton" value="/deleteAddress">
+                <param name="addressId" value="${address.id}"/>
+            </url>
+
+            <td th:text="${address.addressName}"></td>
+            <td th:text="${address.addressComment}"></td>
+            <td>
+                <a th:href="@{/updateAddress(addressId=${address.id})}" class="btn btn-info"> Обновить</a>
+                <a th:href="@{/deleteAddress(addressId=${address.id})}" class="btn btn-danger ml-2">Удалить</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/addAddress}" class="btn btn-primary">Добавить</a>
+
+    <a th:href="@{/profile}">Вернуться в профиль</a>
+
+
+</div>
+
+</body>
+</html>

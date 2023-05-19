@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessories</title>
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+<h2> Информация о товарах </h2>
+
+<table class="table table-border" id="accessories-table">
+    <thead class="thead-light">
+    <tr>
+        <th>Артикул</th>
+        <th>Баркод</th>
+        <th>Наименование товара</th>
+<!--        <th>Описание товара</th>-->
+        <th>Себестоимость</th>
+        <div class="col-md-auto">
+        <th>Стоимость до скидки</th>
+        </div>
+        <th>Скидка</th>
+        <div class="col-md-auto">
+        <th>Действия</th>
+        </div>>
+    </tr>
+</thead>
+<tbody>
+<tr th:each="good : ${allGoods}">
+    <url var="updateButton" value="/admin/updateInfo">
+        <param name="goodId" value="${good.id}"/>
+        </url>
+        
+        <url var="deleteButton" value="/admin/deleteGood">
+        <param name="goodId" value="${good.id}"/>
+        </url>
+    <td th:text="${good.article}"></td>
+    <td th:text="${good.barcode}"></td>
+    <td th:text="${good.name}"></td>
+<!--    <td th:text="${good.description}"></td>-->
+    <td th:text="${good.primeCost}"></td>
+    <div class="col-md-auto">
+    <td th:text="${good.costBeforeSale}"></td>
+    </div>
+    <td th:text="${good.sale}"></td>
+    <td>
+        <div class="col-md-auto">
+        <a th:href="@{/admin/updateInfo(goodId=${good.id})}" class="btn btn-secondary" style="width: 60px"> Upd </a>
+        <a th:href="@{/admin/deleteGood(goodId=${good.id})}" class="btn btn-danger ml-2" style="width: 60px">Del</a>
+        </div>
+    </td>
+
+</tr>
+</tbody>
+</table>
+        <a th:href="@{/admin/addNewGood}" class="btn btn-primary">Добавить</a>
+        <a th:href="@{/}" class="btn btn-primary">Вернуться</a>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#accessories-table").DataTable({
+                'aoColumnDefs': [{
+                    'bSortable': false,
+                    'aTargets': [-1] /* 1st one, start by the right */
+                }]
+            });
+        })
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

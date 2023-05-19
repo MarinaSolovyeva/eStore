@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+
+    </button>
+
+    <form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
+        <table class="table table-border">
+            <tr>
+                <th><label for="username">Введите номер телефона: </label></th>
+                <th><input type="tel" oninput="formatPhoneNumber(this)" placeholder="+7 (___) ___-__-__"
+                           th:field="*{username}" id="username"/>
+                </th>
+            </tr>
+            <br>
+            <tr>
+                <th><label for="password">Введите пароль: </label></th>
+                <th><input type="password" th:field="*{password}" id="password"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password
+                        Error
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th><label> Ваше имя </label></th>
+                <th><input type="text" th:field="*{nameSurname}" placeholder="Имя Фамилия"
+                           class="form-control col-4 mb-4"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('nameSurname')}" th:errors="*{nameSurname}">
+                        NameSurname
+                        Error
+                    </div>
+                </th>
+            </tr>
+
+            <tr>
+                <th> <label> Ваш пол </label> </th>
+                <th>
+                    <div th:each="sexUser : ${T(com.example.estote.entityDetail.UserSex).values()}">
+                        <div>
+                            <input type="radio" th:field="*{sexUser}" th:value="${sexUser}">
+                            <label class="custom-control-label" th:for="${#ids.prev('sexUser')}" th:text="${sexUser}"> </label>
+                        </div>
+                    </div>
+                </th>
+
+            </tr>
+
+            <tr>
+                <th><label for="user-birth-date"> Дата рождения </label></th>
+                <th><input type="date" th:field="*{dateBirth}" id="user-birth-date"
+                           placeholder="Дата рождения" class="form-control col-4 mb-4"/></th>
+            </tr>
+            <tr>
+                <th><label> E-mail </label></th>
+                <th><input type="text" th:field="*{emailUser}" placeholder="E-mail" class="form-control col-4 mb-4"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('emailUser')}" th:errors="*{emailUser}">Email
+                        Error
+                    </div>
+                </th>
+            </tr>
+            <br>
+
+        </table>
+
+        <script>
+
+            function formatPhoneNumber(input) {
+                var phoneNumber = input.value.replace(/\D/g, ''); // Удаляем все символы кроме цифр
+                var formattedPhoneNumber = phoneNumber.replace(/^(\d{1,3})(\d{0,3})(\d{0,2})(\d{0,2})/, "+($1) $2-$3-$4"); // Применяем форматирование
+                input.value = formattedPhoneNumber; // Устанавливаем отформатированный номер телефона в поле формы
+            }
+
+        </script>
+        <input type="submit" value="Sign up!"/>
+    </form>
+</div>
+</body>
+</html>

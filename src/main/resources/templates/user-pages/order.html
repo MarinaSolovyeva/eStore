@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <h2> Оформление заказа </h2>
+
+    <form th:action="@{/saveOrder}" th:object="${order}" method="Post">
+
+    <table class="table table-border table-striped" id="catalog-table">
+            <tr>
+                <td> Название товара</td>
+                <td> Количество</td>
+                <td> Цена</td>
+                <td> Сумма</td>
+            </tr>
+
+            <tr th:each="detail : ${order.orderDetails}">
+
+                <td th:text="${detail.name}"></td>
+                <td th:text="${detail.amount}"></td>
+                <td th:text="${detail.price}"></td>
+                <td th:text="${detail.sum}"></td>
+            </tr>
+        </table>
+    <br>
+
+        <table>
+            <tr>
+                <th>Номер для связи</th>
+                <th>
+                <select class="form-control" id="addresses" name="addresses">
+                    <option value="">Адрес доставки</option>
+                    <option th:each="address : ${addresses}"
+                            th:value="${address.id}"
+                            th:text="${address.addressName}">
+                        <input type="hidden" th:field="*{id}"/>
+                    </option>
+                </select> </th>
+            </tr>
+            <tr>
+                <th>Номер для связи</th>
+                <th><input type="text" th:field="*{phoneOrder}" placeholder="Номер телефона" class="form-control col-4 mb-4"/></th>
+            </tr>
+            <tr>
+                <th>Примечание для курьера </th>
+                <th><input type="text" th:field="*{commentForOrder}" placeholder="Комментарий для доставки" class="form-control col-4 mb-4"/></th>
+            </tr>
+
+        </table>
+
+    <button class="btn btn-primary" type="submit">Подтвердить заказ</button>
+    </form>
+        <br>
+        <a th:href="@{/cart}">Вернуться в корзину</a>
+
+
+</div>
+
+</body>
+</html>

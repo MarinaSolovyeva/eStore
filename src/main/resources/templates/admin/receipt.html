@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2> Поступления товаров </h2>
+
+    <table class="table table-border" id="receipts-table">
+        <thead class="thead-light">
+        <tr>
+            <th>№ поступления</th>
+            <th>Дата поступления</th>
+            <th>Количество товаров</th>
+            <div class="col-md-auto">
+                <th>Действия</th>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="receipt : ${allReceipts}">
+            <url var="updateButton" value="/admin/receipt/updateInfo">
+                <param name="receiptId" value="${receipt.id}"/>
+            </url>
+
+            <url var="deleteButton" value="/admin/receipt/deleteReceipt">
+                <param name="receiptId" value="${receipt.id}"/>
+            </url>
+            <td th:text="${receipt.id}"></td>
+            <td th:text="${receipt.amountGoods}"></td>
+            <td th:text="${#temporals.format(receipt.date, 'dd/MM/yyyy HH:mm')}"></td>
+            <td>
+                <div class="col-md-auto">
+                    <a th:href="@{/admin/updateInfo(receiptId=${receipt.id})}" class="btn btn-secondary" style="width: 60px"> Upd </a>
+                    <a th:href="@{/admin/deleteGood(receiptId=${receipt.id})}" class="btn btn-danger ml-2" style="width: 60px">Del</a>
+                </div>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/receipt/addNewReceipt}" class="btn btn-primary">Добавить</a>
+    <a th:href="@{/admin/receipt/}" class="btn btn-primary">Вернуться</a>
+
+</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>-->
+<script src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#receipts-table").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }]
+        });
+    })
+</script>
+
+
+</body>
+</html>
+
+

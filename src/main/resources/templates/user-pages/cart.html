@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <h2> Корзина </h2>
+    <br>
+    <h4> Общая сумма в корзине <b th:text="${cart.sum}"> </b></h4>
+    <table class="table table-border table-striped" id="catalog-table">
+        <br>
+        <thead>
+        <tr>
+            <td> Название товара</td>
+            <td> Количество</td>
+            <td> Цена</td>
+            <td> Сумма</td>
+            <td> Действия</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="detail : ${cart.cartDetails}">
+            <td th:text="${detail.name}"></td>
+            <td th:text="${detail.amount}"></td>
+            <td th:text="${detail.price}"></td>
+            <td th:text="${detail.sum}"></td>
+            <td><a th:href="@{/{id}/cart/delete(detailGoodId=${detail.goodId})}" class="btn btn-danger">Удалить</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <td><a th:href="@{/new/order}" class="btn btn-primary"> Оформить заказ </a></td>
+
+    <br>
+    <br>
+    <br>
+    <a th:href="@{/}">Вернуться на главную страницу</a>
+
+</div>
+
+</body>
+</html>
