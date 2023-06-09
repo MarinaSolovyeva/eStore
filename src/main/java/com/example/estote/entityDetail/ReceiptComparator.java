@@ -4,7 +4,10 @@ import com.example.estote.entity.Receipt;
 
 import java.util.Comparator;
 
-public class ReceiptComporator implements Comparator<Receipt> {
+public class ReceiptComparator implements Comparator<Receipt> {
+    /**
+     *     The class is necessary to sort the orders of the Admins' page
+     */
     @Override
     public int compare(Receipt r1, Receipt r2) {
         if (r1==r2) {return 0;}

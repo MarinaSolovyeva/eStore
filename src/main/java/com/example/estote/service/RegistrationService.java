@@ -23,6 +23,9 @@ public class RegistrationService {
         this.generalService = generalService;
     }
 
+    /**
+     * register() before saving User to DB, method set encode password to User and set Role by default "USER"
+     */
     @Transactional
     public void register(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

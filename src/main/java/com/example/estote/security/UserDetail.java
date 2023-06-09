@@ -1,18 +1,15 @@
 package com.example.estote.security;
 
 import com.example.estote.entity.User;
-import org.springframework.cglib.core.Local;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
 public class UserDetail implements UserDetails {
+
     private final User user;
 
     public UserDetail(User user) {
@@ -42,7 +39,6 @@ public class UserDetail implements UserDetails {
         return this.user.getEmailUser();
     }
 
-
     public Date getDateBirth() {
         return this.user.getDateBirth();
     }
@@ -71,7 +67,9 @@ public class UserDetail implements UserDetails {
         return true;
     }
 
-    // Нужно, чтобы получать данные аутентифицированного пользователя
+    /**
+     * @return authenticated user. it helps to get info about user
+     */
     public User getPerson() {
         return this.user;
     }

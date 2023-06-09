@@ -7,27 +7,27 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 <div class="container">
 
     <h2>Сведения</h2>
-    <hr/>
 
-<form th:action="@{/admin/saveGood}" th:object="${good}" method="POST">
+    <form th:action="@{/admin/saveGood}" th:object="${good}" method="POST">
 
-    <input type="text" th:field="*{article}" placeholder="Артикул" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{barcode}" placeholder="Баркод" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{name}" placeholder="Наименование товара" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{description}" placeholder="Описание товара" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{primeCost}" placeholder="Себестоимость" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{costBeforeSale}" placeholder="Стоимость до скидки" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{sale}" placeholder="Скидка" class="form-control col-4 mb-4"/>
-    <button class="btn btn-primary" type="submit">Сохранить</button>>
-    <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{article}" placeholder="Артикул" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{barcode}" placeholder="Баркод" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{name}" placeholder="Наименование товара" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{description}" placeholder="Описание товара" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{primeCost}" placeholder="Себестоимость" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{costBeforeSale}" placeholder="Стоимость до скидки"
+               class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{sale}" placeholder="Скидка" class="form-control col-4 mb-4"/>
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+        <input type="hidden" th:field="*{id}"/>
 
-</form>
-    <hr/>
-    <a th:href="@{/admin}">Вернуться</a>
+    </form>
+
+    <a th:href="@{/}" style="position: fixed; left:250px; bottom: 40px;">Вернуться на главную страницу</a>
 
 </div>
 </body>

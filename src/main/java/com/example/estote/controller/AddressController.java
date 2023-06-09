@@ -2,7 +2,6 @@ package com.example.estote.controller;
 
 import com.example.estote.entity.Address;
 import com.example.estote.service.AddressService;
-import com.example.estote.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +13,9 @@ import java.util.List;
 public class AddressController {
 
     private final AddressService addressService;
-    private final UserService userService;
 
-    public AddressController(AddressService addressService, UserService userService) {
+    public AddressController(AddressService addressService) {
         this.addressService = addressService;
-        this.userService = userService;
     }
 
     @RequestMapping("/addresses")

@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Адрес</title>
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Адрес</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 <div class="container">
+    <h2>Сведения об адресе</h2>
 
-  <h2>Сведения об адресе</h2>
-  <hr/>
+    <br>
+    <br>
+    <br>
+    <form th:action="@{/saveAddress}" th:object="${address}" method="POST">
 
-  <form th:action="@{/saveAddress}" th:object="${address}" method="POST">
+        <input type="text" th:field="*{addressName}" placeholder="Адрес" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{addressComment}" placeholder="Комментарий" class="form-control col-4 mb-4"/>
+        <button class="btn btn-light" type="submit">Сохранить</button>
+        <input type="hidden" th:field="*{id}"/>
 
-    <input type="text" th:field="*{addressName}" placeholder="Адрес" class="form-control col-4 mb-4"/>
-    <input type="text" th:field="*{addressComment}" placeholder="Комментарий" class="form-control col-4 mb-4"/>
-    <button class="btn btn-primary" type="submit">Сохранить</button>>
-    <input type="hidden" th:field="*{id}"/>
+    </form>
 
-  </form>
-  <hr/>
-  <a th:href="@{/profile}">Вернуться</a>
+    <a th:href="@{/}" style="position: fixed; left:200px; bottom: 40px;">Вернуться в профиль</a>
 
 </div>
 </body>

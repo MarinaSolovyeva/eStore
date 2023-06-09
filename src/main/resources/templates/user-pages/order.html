@@ -13,7 +13,7 @@
           crossorigin="anonymous">
 
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 <div class="container">
     <h2> Оформление заказа </h2>
 
@@ -39,24 +39,26 @@
 
         <table>
             <tr>
-                <th>Номер для связи</th>
+                <th>Адрес доставки</th>
                 <th>
-                <select class="form-control" id="addresses" name="addresses">
+                <select class="form-control" style="width: 500px; right: 40px"; id="addresses" name="addresses">
                     <option value="">Адрес доставки</option>
                     <option th:each="address : ${addresses}"
                             th:value="${address.id}"
                             th:text="${address.addressName}">
                         <input type="hidden" th:field="*{id}"/>
                     </option>
-                </select> </th>
+                </select>
+                </th>
             </tr>
+
             <tr>
                 <th>Номер для связи</th>
-                <th><input type="text" th:field="*{phoneOrder}" placeholder="Номер телефона" class="form-control col-4 mb-4"/></th>
+                <th><input type="text" th:field="*{phoneOrder}" placeholder="Номер телефона" class="form-control col-4 mb-4" style="top:20px; width: 900px"></th>
             </tr>
             <tr>
                 <th>Примечание для курьера </th>
-                <th><input type="text" th:field="*{commentForOrder}" placeholder="Комментарий для доставки" class="form-control col-4 mb-4"/></th>
+                <th><input type="text" th:field="*{commentForOrder}" placeholder="Комментарий для доставки" class="form-control col-4 mb-4" style="top:10px; width: 900px"/></th>
             </tr>
 
         </table>
@@ -64,8 +66,7 @@
     <button class="btn btn-primary" type="submit">Подтвердить заказ</button>
     </form>
         <br>
-        <a th:href="@{/cart}">Вернуться в корзину</a>
-
+        <a th:href="@{/cart}" style="position: fixed; left:300px; bottom: 40px;" >Вернуться в корзину</a>
 
 </div>
 

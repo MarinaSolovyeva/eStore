@@ -10,44 +10,49 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping  ("/admin")
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
     private GoodService goodService;
 
-    @GetMapping  ("")
+    @GetMapping("")
     public String showGeneralPage() {
-        return "admin/admin-general";}
+        return "admin/admin-general";
+    }
 
-    @GetMapping  ("/allGoods")
+    @GetMapping("/allGoods")
     public String showAllGoods(Model model) {
         List<Good> allGoods = goodService.getAllGoods();
         model.addAttribute("allGoods", allGoods);
-        return "admin/admin";}
+        return "admin/admin";
+    }
 
-    @GetMapping ("/addNewGood")
+    @GetMapping("/addNewGood")
     public String addNewGood(Model model) {
         Good good = new Good();
         model.addAttribute("good", good);
-        return "admin/adminInfo";}
+        return "admin/adminInfo";
+    }
 
-    @PostMapping ("/saveGood")
+    @PostMapping("/saveGood")
     public String saveGood(@ModelAttribute("good") Good good) {
         goodService.saveGood(good);
-        return "redirect:/admin"; }
+        return "redirect:/admin";
+    }
 
     @GetMapping("/updateInfo")
     public String updateGood(@RequestParam("goodId") long id, Model model) {
         Good good = goodService.getGood(id);
         model.addAttribute("good", good);
-        return "admin/adminInfo";}
+        return "admin/adminInfo";
+    }
 
     @GetMapping("/deleteGood")
     public String deleteGood(@RequestParam("goodId") long id) {
         goodService.deleteGood(id);
-        return "redirect:/admin";}
-
+        return "redirect:/admin";
+    }
 
 }
 

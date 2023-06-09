@@ -27,6 +27,9 @@ public class CartService {
         this.userService = userService;
     }
 
+    /**
+     * createCart() creating cart the first time a good is added to the cart
+     */
     @Transactional
     public Cart createCart(User user, List<Long> goodIds) {
         Cart cart = new Cart();
@@ -36,8 +39,9 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
-
-    //get references on goods in cart
+    /**
+     * getCollectRefGoodById() get references on goods in cart
+     */
     private List<Good> getCollectRefGoodById(List<Long> goodIds) {
         return goodIds
                 .stream()
@@ -61,8 +65,9 @@ public class CartService {
         cart.setGoods(newGoods);
         cartRepository.save(cart);
     }
-
-    //aggregate info for cart view
+    /**
+     * getCartByUser() aggregate info for cart view
+     */
     public Cart getCartByUser(String name) {
         User user = userService.findByName(name);
         if (user == null || user.getCart() == null) {
@@ -86,6 +91,9 @@ public class CartService {
         return cart;
     }
 
+    /**
+     * clearCart() helps to clear cart after create order
+     */
     @Transactional
     public void clearCart (Cart cart) {
         cart.getGoods().clear();

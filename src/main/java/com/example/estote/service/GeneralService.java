@@ -14,7 +14,9 @@ public class GeneralService {
         return LocalDateTime.now();
     }
 
-
+    /**
+     * templateEngine() realize the function of format date in view
+     */
     private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.addDialect(new Java8TimeDialect());

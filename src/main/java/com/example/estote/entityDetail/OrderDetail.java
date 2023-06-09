@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 
 @Data
@@ -14,7 +13,9 @@ import java.math.BigDecimal;
 @Builder
 
 public class OrderDetail {
-
+    /**
+     *The class is necessary for the correct display of the order on the user page
+     */
     private String name;
     private Long goodId;
     private int price;

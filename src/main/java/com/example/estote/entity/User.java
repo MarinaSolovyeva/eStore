@@ -24,7 +24,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @Pattern(regexp = "\\+7 \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}", message = "Некорректный формат номера телефона")
     @Column(name = "phone_user")
     private String username;
 
@@ -40,7 +39,6 @@ public class User {
     private String nameSurname;
 
     @Email(message = "E-mail адрес введен неправильно")
-//    @NotEmpty(message = "Заполните e-mail")
     @Column(name = "e-mail_user")
     private String emailUser;
 

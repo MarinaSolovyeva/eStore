@@ -8,24 +8,58 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px" ;>
 <div class="container">
-<h2> Профиль </h2>
-<br><br>
+    <h2> Профиль </h2>
+    <br><br>
 
-    <table class="table table-border table-striped">
+    <style>
+        .personal {
+            height: 700px;
+            width: 500px;
+            background-color: snow;
+            padding-top: 250px;
+            padding-left: 30px;
+            font-size: 40px;
+            float: left;
+        }
 
-    <tr> <a href="user">Личная информация </a> </tr>
-        <br>
-    <tr> <a href="/orders">Мои заказы</a> </tr>
-        <br>
-    <tr> <a href="/addresses">Адреса для доставки</a> </tr>
+        .myOrder {
+            margin: 10px;
+            height: 305px;
+            width: 500px;
+            background-color: snow;
+            padding-top: 90px;
+            padding-left: 70px;
+            font-size: 40px;
+            float: right;
+        }
 
-    </table>
+        .myAddress {
+            margin: 10px;
+            height: 305px;
+            width: 500px;
+            background-color: snow;
+            padding-top: 90px;
+            padding-left: 70px;
+            font-size: 40px;
+            float: right;
+        }
+    </style>
+
+
+    <p class="personal"><a href="user" class="btn-outline-info">Личная информация </a></p>
+    <br>
+    <p class="myOrder"><a href="/orders">Мои заказы</a></p>
+    <br>
+    <p class="myAddress"><a href="/addresses">Адреса для доставки</a></p>
+
+
     <br>
     <br>
-<a th:href="@{/}" class="btn btn-primary">Вернуться</a>
-</div>>
+    <a th:href="@{/}" style="position: fixed; left:300px; bottom: 40px;">Вернуться</a>
+</div>
+
 </body>
 </html>
 
