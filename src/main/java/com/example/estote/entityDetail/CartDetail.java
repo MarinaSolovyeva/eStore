@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 
 @Data
@@ -14,6 +13,8 @@ import java.math.BigDecimal;
 @Builder
 
 public class CartDetail {
+    /** The class is necessary for the correct display of the User's Cart
+     */
     private String name;
     private Long goodId;
     private int price;

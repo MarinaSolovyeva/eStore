@@ -30,7 +30,9 @@ public class OrderService {
         this.cartService = cartService;
     }
 
-    //создание заказа, добавление товаров
+    /**
+     * saveOrder() creating order and set goods
+     */
     @Transactional
     public void saveOrder(Order order) {
         List<Good> goodList = getCollectRefGoodById(order.getGoodIDs());
@@ -45,7 +47,9 @@ public class OrderService {
         return foundOrder.orElse(null);
     }
 
-    //get orders by user
+    /**
+     *     getAllOrdersByUser() get orders by user
+     */
     public List<Order> getAllOrdersByUser(String name) {
         User user = userService.findByName(name);
         List<Order> orderList = orderRepository.findAllOrdersByUserId(user);
@@ -56,8 +60,9 @@ public class OrderService {
         return orderList;}
 
 
-
-    //get references on goods
+    /**
+     *     getCollectRefGoodById() get references of goods
+     */
     private List<Good> getCollectRefGoodById(List<Long> goodIds) {
         return goodIds
                 .stream()
@@ -74,7 +79,9 @@ public class OrderService {
         cartService.clearCart(user.getCart());
     }
 
-    //get IDs for goods in order
+    /**
+     * getGoodID() get IDs for goods in order
+     */
     public List<Long> getGoodID(Order order) {
         List<Good> goods = order.getGoods();
         List<Long> goodIds = new ArrayList<>();
@@ -84,7 +91,9 @@ public class OrderService {
         return goodIds;
     }
 
-    //copy details to new order
+    /**
+     * copyAllDetailsToOrder() copy details to new order
+     */
     public Order copyAllDetailsToOrder(Order newOrder, Order oldOrder, Address address) {
         setDeliveryDetails(newOrder, oldOrder, address);
         oldOrder = null;
@@ -107,7 +116,9 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    //aggregate info for order view
+    /**
+     *     getOrderByUser() aggregate info for order view
+     */
     public Order getOrderByUser(String name) {
         User user = userService.findByName(name);
         Order order = new Order();

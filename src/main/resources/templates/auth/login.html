@@ -11,8 +11,7 @@
 </head>
 <br>
 <br>
-
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 
 <div class="container">
     <form name="f" method="post" action="/process_login">
@@ -34,13 +33,11 @@
 
         <br>
         <br>
-        <input type="submit" class="btn btn-primary" value="Войти"/>
-        <br>
-        <br>
-        <a th:href="@{/auth/registration}" class="btn btn-primary">Зарегистрироваться</a>
+        <input type="submit" class="btn btn-warning" value="Войти"/>
+        <a th:href="@{/auth/registration}" class="btn btn-warning m-100">Зарегистрироваться</a>
     </form>
 </div>
-
+<a th:href="@{/}" style="position: fixed; left:200px; bottom: 40px;">Вернуться</a>
 
 
 

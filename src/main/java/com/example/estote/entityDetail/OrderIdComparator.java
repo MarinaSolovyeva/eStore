@@ -5,6 +5,9 @@ import com.example.estote.entity.Order;
 import java.util.Comparator;
 
 public class OrderIdComparator implements Comparator<Order> {
+    /**
+     *     The class is necessary to sort the orders of the User's page
+     */
     @Override
     public int compare(Order o1, Order o2) {
         if (o1==o2) {return 0;}

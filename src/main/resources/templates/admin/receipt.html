@@ -11,12 +11,12 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 <div class="container">
     <h2> Поступления товаров </h2>
 
-    <table class="table table-border" id="receipts-table">
-        <thead class="thead-light">
+    <table class="table table-border table-light" id="receipts-table">
+        <thead class="table-light">
         <tr>
             <th>№ поступления</th>
             <th>Дата поступления</th>
@@ -40,23 +40,26 @@
             <td th:text="${#temporals.format(receipt.date, 'dd/MM/yyyy HH:mm')}"></td>
             <td>
                 <div class="col-md-auto">
-                    <a th:href="@{/admin/updateInfo(receiptId=${receipt.id})}" class="btn btn-secondary" style="width: 60px"> Upd </a>
-                    <a th:href="@{/admin/deleteGood(receiptId=${receipt.id})}" class="btn btn-danger ml-2" style="width: 60px">Del</a>
+                    <a th:href="@{/admin/updateInfo(receiptId=${receipt.id})}" class="btn btn-light"
+                       style="width: 60px"> Upd </a>
+                    <a th:href="@{/admin/deleteGood(receiptId=${receipt.id})}" class="btn btn-warning"
+                       style="width: 60px">Del</a>
                 </div>
             </td>
 
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/admin/receipt/addNewReceipt}" class="btn btn-primary">Добавить</a>
-    <a th:href="@{/admin/receipt/}" class="btn btn-primary">Вернуться</a>
+    <a th:href="@{/admin/receipt/addNewReceipt}" class="btn btn-light">Добавить</a>
+    <a th:href="@{/}" style="position: fixed; left:300px; bottom: 40px;">Вернуться</a>
 
 </div>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>-->
+
+
 <script src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#receipts-table").DataTable({
             'aoColumnDefs': [{
                 'bSortable': false,

@@ -13,12 +13,11 @@
           crossorigin="anonymous">
 
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 <div class="container">
     <h2> Поступление товаров </h2>
     <table id="table-receipt" table class="table table-border table-striped">
-        <form th:action="@{/admin/receipt/saveReceipt}" th:object="${receipt}" method="Post">
-            <input type="hidden" th:field="*{id}"/>
+        <form th:action="@{/admin/receipt/saveReceipt}" method="Post">
             <thead>
             <tr>
                 <td> Артикул товара</td>
@@ -28,32 +27,20 @@
             <tbody id="table-body">
 
             <tr id="row">
-                <!--                                <td>-->
-                <!--                                    <select class="form-control" id="allGoods" name="allGoods">-->
-                <!--                                        <option value="">Товар</option>-->
-                <!--                                        <option th:each="good : ${allGoods}"-->
-                <!--                                                th:value="${good.id}"-->
-                <!--                                                th:text="${good.article}">-->
-                <!--                                            <input type="hidden" th:field="*{id}"/>-->
-                <!--                                        </option>-->
-                <!--                                    </select>-->
-                <!--                                </td>-->
 
-
-                <td>
-                    <select class="form-control" id="goodsAmount" name="goodsAmount">
-                        <option th:each="entry : ${goodsAmount}"
-                                th:value="${entry.key}"
-                                th:text="${entry.key}">
+                <td id="selectGood">
+                    <select class="form-control" id="allGoods" name="allGoods">
+                        <option value="">Товар</option>
+                        <option th:each="good : ${allGoods}"
+                                th:value="${good.article}"
+                                th:text="${good.article}">
+                            <input type="hidden" th:field="*{id}">
                         </option>
                     </select>
-
                 </td>
-                <td>
-<!--                    <input type="text" th:field="*{amountList}" placeholder="Количество товаров"-->
-<!--                           class="form-control col-4 mb-4"/>-->
+                <td id="quantity">
+                    <input type="number" name="quantity">
                 </td>
-
             </tr>
             </tbody>
             <button class="btn btn-primary" type="submit"> Сохранить поступление</button>
@@ -67,14 +54,31 @@
 
 
     <script>
+        let body = document.querySelector('#table-body')
+        let index = 1; // Начальный индекс объекта
 
         document.querySelector('.add').addEventListener('click', function () {
-            let body = document.querySelector('#table-body')
-            let row = body.querySelector('#row')
-            const tr = row.cloneNode(true);
-            document.getElementById('table-body').appendChild(tr)
+            let selectGood = document.querySelector("#selectGood")
+
+            selectGood.name='objectList[' + index + '].allGoods'
+            let input = document.querySelector('#quantity')
+            input.name='objectList[' + index + '].quantity'
+
+            let row = body.querySelector('#row');
+            row.appendChild(selectGood)
+            row.appendChild(input)
+            index++;
+            let newRow = row.cloneNode(true);
+
+            console.log(selectGood.name)
+            console.log(input.name)
+            document.getElementById('table-body').appendChild(newRow);
+
         })
+
+
     </script>
+
 
 </div>
 </body>

@@ -18,14 +18,13 @@ public class GoodService {
     private final GoodRepository goodRepository;
     private final UserService userService;
     private final CartService cartService;
-    private final OrderService orderService;
+
 
     @Autowired
-    public GoodService(GoodRepository goodRepository, UserService userService, CartService cartService, OrderService orderService) {
+    public GoodService(GoodRepository goodRepository, UserService userService, CartService cartService) {
         this.goodRepository = goodRepository;
         this.userService = userService;
         this.cartService = cartService;
-        this.orderService = orderService;
     }
 
     @Transactional
@@ -77,36 +76,6 @@ public class GoodService {
         cartService.deleteGood(cart, good);
     }
 
-
-
-
-
-//    @Transactional
-//    public void addToUserOrder(String username, Order order) {
-//        User user = userService.findByName(username);
-//        if (user == null) {
-//            throw new RuntimeException("User not found");
-//        }
-//        order.setUserId(user);
-//        List <Good> goods = order.getGoods();
-//        List<Long> goodIds = new ArrayList<>();
-//        for (Good good : goods) {
-//            goodIds.add(good.getId());}
-//        Order newOrder = orderService.createOrder(goodIds, order);
-//        orderService.saveOrder(newOrder);
-//        clearCart(username);
-//    }
-
-//    @Transactional
-//    public void addToUserOrder(List<Long> goodIds, String username, Order order) {
-//        User user = userService.findByName(username);
-//        if (user == null) {
-//            throw new RuntimeException("User not found");
-//        }
-//        List<OrderDetail> detail = order.getOrderDetails();
-//        Order newOrder = orderService.createOrder(user, goodIds, order);
-//        orderService.saveOrder(newOrder);
-//    }
 }
 
 

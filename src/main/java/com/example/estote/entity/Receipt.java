@@ -6,9 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,16 +37,7 @@ public class Receipt {
     @Column (name = "date_receipt")
     private LocalDateTime date;
 
-//    private transient List <ReceiptDetail> receiptDetails = new ArrayList<>();
-
-    private transient List <BigDecimal> amountList;
-
-    private transient Map <Long, Integer> goodsAmount= new HashMap <>();
-//
-//    public void aggregate() {
-//        this.amountGoods = receiptDetails.size();
-
-//    private transient List<Receipt> receiptList = new ArrayList<>();
+    private transient Map <Long, Integer> receipt = new HashMap<>();
 
 
 }

@@ -11,7 +11,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 
 <div class="container">
     <h2> Мои адреса </h2>
@@ -37,16 +37,16 @@
             <td th:text="${address.addressName}"></td>
             <td th:text="${address.addressComment}"></td>
             <td>
-                <a th:href="@{/updateAddress(addressId=${address.id})}" class="btn btn-info"> Обновить</a>
-                <a th:href="@{/deleteAddress(addressId=${address.id})}" class="btn btn-danger ml-2">Удалить</a>
+                <a th:href="@{/updateAddress(addressId=${address.id})}" class="btn btn-light"> Обновить</a>
+                <a th:href="@{/deleteAddress(addressId=${address.id})}" class="btn btn-warning">Удалить</a>
             </td>
 
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/addAddress}" class="btn btn-primary">Добавить</a>
+    <a th:href="@{/addAddress}" class="btn btn-light">Добавить</a>
 
-    <a th:href="@{/profile}">Вернуться в профиль</a>
+    <a th:href="@{/}" style="position: fixed; left:200px; bottom: 40px;">Вернуться</a>
 
 
 </div>

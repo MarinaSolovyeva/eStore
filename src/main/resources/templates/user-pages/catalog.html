@@ -12,7 +12,7 @@
           crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 <div class="container">
     <h2> Каталог </h2>
 
@@ -35,14 +35,13 @@
                 <td th:text="${good.sale}"></td>
                 <td th:text="${good.costBeforeSale*good.sale/100}"></td>
                 <td>
-                    <a th:href="@{/{id}/cart(id=${good.id})}" class="btn btn-primary" >Добавить товар в корзину</a>
-<!--                    <a th:href="@{/{id}/cart(id=${good.id})}">Оформить заказ</a>-->
+                    <a th:href="@{/{id}/cart(id=${good.id})}" class="btn btn-light" >Добавить товар в корзину</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <a th:href="@{/}">Вернуться</a>
+    <a th:href="@{/}" style="position: fixed; left:300px; bottom: 40px;">Вернуться</a>
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

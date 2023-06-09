@@ -5,7 +5,6 @@ import com.example.estote.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 
 @Service
@@ -19,6 +18,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    /**Method to saveUser() delete all old information about User. So if we want to update some info, we should set
+     * all old info, which User doesn't see in profile
+     */
     @Transactional
     public void update(long id, User updatedUser) {
         Optional<User> oldUser = userRepository.findById(id);
@@ -28,7 +30,6 @@ public class UserService {
         updatedUser.setRole(oldUser.get().getRole());
         updatedUser.setCart(oldUser.get().getCart());
         userRepository.save(updatedUser);
-
     }
     @Transactional
     public User getUser(long id) {

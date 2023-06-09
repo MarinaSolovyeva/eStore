@@ -9,74 +9,78 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+          crossorigin="anonymous">
 </head>
-<body>
-    <div class="container">
-<h2> Информация о товарах </h2>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
+<div class="container">
+    <h2> Информация о товарах </h2>
 
-<table class="table table-border" id="accessories-table">
-    <thead class="thead-light">
-    <tr>
-        <th>Артикул</th>
-        <th>Баркод</th>
-        <th>Наименование товара</th>
-<!--        <th>Описание товара</th>-->
-        <th>Себестоимость</th>
-        <div class="col-md-auto">
-        <th>Стоимость до скидки</th>
-        </div>
-        <th>Скидка</th>
-        <div class="col-md-auto">
-        <th>Действия</th>
-        </div>>
-    </tr>
-</thead>
-<tbody>
-<tr th:each="good : ${allGoods}">
-    <url var="updateButton" value="/admin/updateInfo">
-        <param name="goodId" value="${good.id}"/>
-        </url>
-        
-        <url var="deleteButton" value="/admin/deleteGood">
-        <param name="goodId" value="${good.id}"/>
-        </url>
-    <td th:text="${good.article}"></td>
-    <td th:text="${good.barcode}"></td>
-    <td th:text="${good.name}"></td>
-<!--    <td th:text="${good.description}"></td>-->
-    <td th:text="${good.primeCost}"></td>
-    <div class="col-md-auto">
-    <td th:text="${good.costBeforeSale}"></td>
-    </div>
-    <td th:text="${good.sale}"></td>
-    <td>
-        <div class="col-md-auto">
-        <a th:href="@{/admin/updateInfo(goodId=${good.id})}" class="btn btn-secondary" style="width: 60px"> Upd </a>
-        <a th:href="@{/admin/deleteGood(goodId=${good.id})}" class="btn btn-danger ml-2" style="width: 60px">Del</a>
-        </div>
-    </td>
+    <table class="table table-border" id="accessories-table">
+        <thead class="table-light">
+        <tr>
+            <th>Артикул</th>
+            <th>Баркод</th>
+            <th>Наименование товара</th>
+            <th>Себестоимость</th>
+            <div class="col-md-auto">
+                <th>Стоимость до скидки</th>
+            </div>
+            <th>Скидка</th>
+            <div class="col-md-auto">
+                <th>Действия</th>
+            </div>
 
-</tr>
-</tbody>
-</table>
-        <a th:href="@{/admin/addNewGood}" class="btn btn-primary">Добавить</a>
-        <a th:href="@{/}" class="btn btn-primary">Вернуться</a>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="good : ${allGoods}">
+            <url var="updateButton" value="/admin/updateInfo">
+                <param name="goodId" value="${good.id}"/>
+            </url>
 
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+            <url var="deleteButton" value="/admin/deleteGood">
+                <param name="goodId" value="${good.id}"/>
+            </url>
+            <td th:text="${good.article}"></td>
+            <td th:text="${good.barcode}"></td>
+            <td th:text="${good.name}"></td>
+            <td th:text="${good.primeCost}"></td>
+            <div class="col-md-auto">
+                <td th:text="${good.costBeforeSale}"></td>
+            </div>
+            <td th:text="${good.sale}"></td>
+            <td>
+                <div class="col-md-auto">
+                    <a th:href="@{/admin/updateInfo(goodId=${good.id})}" class="btn btn-light" style="width: 60px">
+                        Upd </a>
+                    <a th:href="@{/admin/deleteGood(goodId=${good.id})}" class="btn btn-warning"
+                       style="width: 60px">Del</a>
+                </div>
+            </td>
 
-    <script>
-        $(document).ready(function() {
-            $("#accessories-table").DataTable({
-                'aoColumnDefs': [{
-                    'bSortable': false,
-                    'aTargets': [-1] /* 1st one, start by the right */
-                }]
-            });
-        })
-    </script>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/addNewGood}" class="btn btn-light">Добавить</a>
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+
+
+<a th:href="@{/}" style="position: fixed; left:300px; bottom: 40px;">Вернуться</a>
+
+<script>
+    $(document).ready(function () {
+        $("#accessories-table").DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }]
+        });
+    })
+</script>
 
 
 </body>

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,9 +21,7 @@ public class Good {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty(message = "Article should not be empty")
-    @Size(min = 9, max = 9, message = "Article should contains 9 characters")
-    @NonNull
+//    @Size(min = 9, max = 9, message = "Article should contains 9 characters")
     @Column (name = "article_good")
     private long article;
 
@@ -53,13 +49,6 @@ public class Good {
             joinColumns = @JoinColumn(name = "id_good"),
             inverseJoinColumns = @JoinColumn(name = "id_receipt"))
     private List <Receipt> receipts;
-//
-//    @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-//    @JoinTable (name = "good_write_off",
-//            joinColumns = @JoinColumn(name = "id_good"),
-//            inverseJoinColumns = @JoinColumn(name = "id_write_off"))
-//    private List <WriteOff> writesOff;
-
 
     @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
             CascadeType.REFRESH})
@@ -77,7 +66,11 @@ public class Good {
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     List <Order> orders;
 
-
+//    @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+//    @JoinTable (name = "good_write_off",
+//            joinColumns = @JoinColumn(name = "id_good"),
+//            inverseJoinColumns = @JoinColumn(name = "id_write_off"))
+//    private List <WriteOff> writesOff;
 
 
 }
