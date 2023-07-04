@@ -10,15 +10,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final UserDetailService userDetailService;
+    private final JWTFilter jwtFilter;
 
     @Autowired
-    public SecurityConfig(UserDetailService userDetailService) {
+    public SecurityConfig(UserDetailService userDetailService, JWTFilter jwtFilter) {
         this.userDetailService = userDetailService;
+        this.jwtFilter = jwtFilter;
     }
 
     @Bean
@@ -30,12 +34,15 @@ public class SecurityConfig {
                 .and()
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/auth/token", true)
                 .failureUrl("/auth/login?error")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/auth/login");
+                .logoutSuccessUrl("/auth/login")
+                .and()
+                .csrf().disable()
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();}
 
         @Bean

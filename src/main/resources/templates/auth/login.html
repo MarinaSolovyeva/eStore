@@ -14,10 +14,10 @@
 <body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px";>
 
 <div class="container">
-    <form name="f" method="post" action="/process_login">
+    <form th:method="POST" th:action="@{/process_login}" th:object="${user}">
 
-        <table class="table table-border">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <table class="table table-border" style="width: 400px">
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
             <tr>
                 <th><label for="username">Введите имя пользователя: </label></th>
                 <th><input type="text" name="username" id="username"/></th>
