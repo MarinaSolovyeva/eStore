@@ -1,0 +1,21 @@
+body {
+    background: linen;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 10px;
+}
+
+catalog {
+    column-width: 1100px;
+}
+
+columns {
+    column-width: 100px;
+}
+
+contacts {
+    position: fixed;
+    left:650px;
+    bottom: 40px;
+    column-width: 100px;
+}

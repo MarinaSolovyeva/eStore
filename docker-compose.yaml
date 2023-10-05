@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 3221
+      MYSQL_DATABASE: store_project
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"

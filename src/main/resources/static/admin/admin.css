@@ -1,0 +1,20 @@
+body {
+    background: linen;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 10px;
+}
+
+back {
+    position: fixed;
+    left:300px;
+    bottom: 40px;
+}
+
+btn btn-warning {
+    width: 60px;
+}
+
+btn btn-light {
+    width: 60px;
+}

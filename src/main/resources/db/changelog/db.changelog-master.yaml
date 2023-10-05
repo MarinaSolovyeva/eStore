@@ -1,0 +1,273 @@
+#databaseChangeLog:
+#  - changeSet:
+#      id: 001
+#      author: Marina
+#      changes:
+#        - createTable:
+#            tableName: users
+#            columns:
+#              - column:
+#                  name: id_user
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: phone_user
+#                  type: VARCHAR(45)
+#              - column:
+#                  name: password_user
+#                  type: VARCHAR(150)
+#              - column:
+#                  name: name_surname_user
+#                  type: VARCHAR(45)
+#              - column:
+#                  name: e-mail_user
+#                  type: VARCHAR(45)
+#              - column:
+#                  name: date_birth
+#                  type: DATE
+#              - column:
+#                  name: sex_user
+#                  type: VARCHAR(45)
+#              - column:
+#                  name: role
+#                  type: VARCHAR(45)
+#              - column:
+#                  name: archive_user
+#                  type: TINYINT
+#        - createTable:
+#            tableName: addresses
+#            columns:
+#              - column:
+#                  name: id_address
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: user_id
+#                  type: INT
+#              - column:
+#                  name: address_address
+#                  type: TEXT
+#              - column:
+#                  name: comment_address
+#                  type: TEXT
+#            foreignKeyConstraints:
+#              - baseColumnNames: user_id
+#                baseTableName: addresses
+#                referencedColumnNames: id_user
+#                referencedTableName: users
+#                name: addresses_users_id_fk
+#        - createTable:
+#            tableName: goods
+#            columns:
+#              - column:
+#                  name: id_good
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: article_good
+#                  type: INT
+#                  constraints:
+#                    UNIQUE: true
+#                    NOTNULL: true
+#              - column:
+#                  name: barcode_good
+#                  type: BIGINT
+#                  constraints:
+#                    UNIQUE: true
+#                    NOTNULL: true
+#              - column:
+#                  name: name_good
+#                  type: VARCHAR(45)
+#                  constraints:
+#                    default: "Продукт"
+#              - column:
+#                  name: description_good
+#                  type: TEXT
+#              - column:
+#                  name: prime_cost_good
+#                  type: INT
+#              - column:
+#                  name: cost_before_sales_good
+#                  type: INT
+#              - column:
+#                  name: sale
+#                  type: INT
+#        - createTable:
+#            tableName: carts
+#            columns:
+#              - column:
+#                  name: id_cart
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#        - createTable:
+#            tableName: good_cart
+#            columns:
+#              - column:
+#                  name: good_id
+#                  type: INT
+#              - column:
+#                  name: cart_id
+#                  type: INT
+#            foreignKeyConstraints:
+#              - baseColumnNames: good_id
+#                baseTableName: good_cart
+#                referencedColumnNames: id_good
+#                referencedTableName: goods
+#                name: goods_carts_id_fk
+#              - baseColumnNames: cart_id
+#                baseTableName: good_cart
+#                referencedColumnNames: id_cart
+#                referencedTableName: carts
+#                name: carts_goods_id_fk
+#        - createTable:
+#            tableName: statuses
+#            columns:
+#              - column:
+#                  name: id_status
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: name_status
+#                  type: VARCHAR(45)
+#        - createTable:
+#            tableName: orders
+#            columns:
+#              - column:
+#                  name: id_order
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: user_id
+#                  type: INT
+#              - column:
+#                  name: address_id
+#                  type: INT
+#              - column:
+#                  name: phone_order
+#                  type: VARCHAR(45)
+#              - column:
+#                  name: comment_order
+#                  type: TEXT
+#              - column:
+#                  name: sum_order
+#                  type: DOUBLE
+#              - column:
+#                  name: datetime_of_creation
+#                  type: DATETIME
+#              - column:
+#                  name: datetime_of_delivery_order
+#                  type: DATETIME
+#              - column:
+#                  name: status_id
+#                  type: INT
+#            foreignKeyConstraints:
+#              - baseColumnNames: user_id
+#                baseTableName: orders
+#                referencedColumnNames: id_user
+#                referencedTableName: users
+#                name: users_orders_id_fk
+#              - baseColumnNames: address_id
+#                baseTableName: orders
+#                referencedColumnNames: id_address
+#                referencedTableName: addresses
+#                name: orders_addresses_id_fk
+#              - baseColumnNames: status_id
+#                baseTableName: orders
+#                referencedColumnNames: id_status
+#                referencedTableName: statuses
+#                name: orders_statuses_id_fk
+#        - createTable:
+#            tableName: balance_of_goods
+#            columns:
+#              - column:
+#                  name: id
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: good_id
+#                  type: INT
+#        - createTable:
+#            tableName: balance_of_goods
+#            columns:
+#              - column:
+#                  name: id
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: good_id
+#                  type: INT
+#            foreignKeyConstraints:
+#              - baseColumnNames: good_id
+#                baseTableName: balance_of_goods
+#                referencedColumnNames: id_good
+#                referencedTableName: goods
+#                name: balance_goods_id_fk
+#        - createTable:
+#            tableName: good_receipt
+#            columns:
+#              - column:
+#                  name: id_good
+#                  type: INT
+#              - column:
+#                  name: id_receipt
+#                  type: INT
+#            foreignKeyConstraints:
+#              - baseColumnNames: id_good
+#                baseTableName: good_receipt
+#                referencedColumnNames: id_good
+#                referencedTableName: goods
+#                name: receipt_goods_id_fk
+#              - baseColumnNames: id_receipt
+#                baseTableName: good_receipt
+#                referencedColumnNames: id_receipt
+#                referencedTableName: receipts
+#                name: receipts_receipt_id_fk
+#        - createTable:
+#            tableName: write_off_of_goods
+#            columns:
+#              - column:
+#                  name: id_write_off
+#                  type: INT
+#                  autoIncrement: true
+#                  constraints:
+#                    primaryKey: true
+#              - column:
+#                  name: good_id
+#                  type: INT
+#              - column:
+#                  name: amount_write_off
+#                  type: INT
+#              - column:
+#                  name: sum_write_off
+#                  type: INT
+#              - column:
+#                  name: date_write_off
+#                  type: DATETIME
+#              - column:
+#                  name: order_id
+#                  type: INT
+#        - createTable:
+#            tableName: good_write_off
+#            columns:
+#              - column:
+#                  name: id_good
+#                  type: INT
+#              - column:
+#                  name: id_write_off
+#                  type: INT
