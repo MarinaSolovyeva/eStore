@@ -3,7 +3,7 @@ package com.project.estore.controller;
 import com.project.estore.entity.User;
 import com.project.estore.service.RegistrationService;
 import com.project.estore.service.UserService;
-import com.project.estore.util.JWTUtil;
+//import com.project.estore.util.JWTUtil;
 import com.project.estore.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,15 +25,15 @@ public class AuthController {
 
     private final RegistrationService registrationService;
     private final UserValidator userValidator;
-    private final JWTUtil jwtUtil;
+//    private final JWTUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
 
     @Autowired
-    public AuthController(RegistrationService registrationService, UserValidator userValidator, JWTUtil jwtUtil, AuthenticationManager authenticationManager, UserService userService) {
+    public AuthController(RegistrationService registrationService,  UserValidator userValidator, AuthenticationManager authenticationManager, UserService userService) {
         this.registrationService = registrationService;
         this.userValidator = userValidator;
-        this.jwtUtil = jwtUtil;
+//        this.jwtUtil = jwtUtil;
         this.authenticationManager = authenticationManager;
         this.userService = userService;
     }
@@ -43,16 +43,16 @@ public class AuthController {
         return "auth/login";
     }
 
-    @GetMapping ("/token")
-    public String confirmLogin(Principal principal) {
-        User user = userService.findByName(principal.getName());
-        UsernamePasswordAuthenticationToken authInputToken =
-                new UsernamePasswordAuthenticationToken(user.getUsername(),
-                        user.getPassword());
-
-        String token = jwtUtil.generateToken(user.getUsername());
-        return "redirect:/";
-    }
+//    @GetMapping ("/token")
+//    public String confirmLogin(Principal principal) {
+//        User user = userService.findByName(principal.getName());
+//        UsernamePasswordAuthenticationToken authInputToken =
+//                new UsernamePasswordAuthenticationToken(user.getUsername(),
+//                        user.getPassword());
+//
+//        String token = jwtUtil.generateToken(user.getUsername());
+//        return "redirect:/";
+//    }
 
     @GetMapping("/registration")
     public String registrationPage(@ModelAttribute("user") User user) {

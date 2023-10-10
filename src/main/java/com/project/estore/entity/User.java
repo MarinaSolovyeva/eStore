@@ -1,6 +1,6 @@
 package com.project.estore.entity;
 
-import com.project.estore.entityDetail.UserSex;
+import com.project.estore.entityDetail.GenderUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -22,9 +22,9 @@ public class User {
     @Id
     @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "phone_user")
+    @Column(name = "username")
     private String username;
 
     @Column(name = "password_user")
@@ -47,14 +47,14 @@ public class User {
     private Date dateBirth;
 
     @Enumerated (value = EnumType.STRING)
-    @Column (name = "sex_user")
-    private UserSex sexUser;
+    @Column (name = "gender_user")
+    private GenderUser genderUser;
 
     @Column(name = "role")
     private String role;
 
-//    @Column (name = "archive_user")
-//    private boolean isArchive;
+    @Column (name = "archive_user")
+    private Boolean isArchive;
 
     @Column(name = "recording_date")
     private LocalDateTime recordingDate;

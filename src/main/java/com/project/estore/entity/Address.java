@@ -18,13 +18,13 @@ public class Address {
     @Id
     @Column (name = "id_address")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column (name = "address_address")
+    @Column (name = "address_name")
     private String addressName;
 
     @Column (name = "comment_address")

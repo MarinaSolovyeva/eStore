@@ -20,7 +20,7 @@ public class Cart {
     @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cart")
-    private long idCart;
+    private Long idCart;
 
     @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
             CascadeType.REFRESH})

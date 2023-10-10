@@ -20,7 +20,6 @@ public class RegistrationService {
     public RegistrationService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, GeneralService generalService) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-
         this.generalService = generalService;
     }
 

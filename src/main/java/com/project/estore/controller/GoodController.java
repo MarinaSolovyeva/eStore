@@ -21,7 +21,7 @@ public class GoodController {
     public String showCatalog(Model model) {
         List<Good> allGoods = goodService.getAllGoods();
         model.addAttribute("allGoods", allGoods);
-        return "static/user-pages/catalog";
+        return "user-pages/catalog";
     }
 
     @GetMapping("/{id}/cart")

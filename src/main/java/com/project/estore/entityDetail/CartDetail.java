@@ -16,7 +16,7 @@ public class CartDetail {
 
     private String name;
     private Long goodId;
-    private int price;
+    private Integer price;
     private BigDecimal amount;
     private Double sum;
 

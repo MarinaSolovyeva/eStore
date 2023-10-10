@@ -22,14 +22,14 @@ public class AddressController {
     public String showAllAddresses(Model model, Principal principal) {
         List<Address> allAddress = addressService.getAllAddressesByUser(principal.getName());
         model.addAttribute("allAddress", allAddress);
-        return "static/user-pages/profile_folder/addresses";
+        return "user-pages/profile_folder/addresses";
     }
 
     @GetMapping ("/addAddress")
     public String addNewAddress(Model model) {
         Address address = new Address();
         model.addAttribute("address", address);
-        return "static/user-pages/profile_folder/addressInfo";}
+        return "user-pages/profile_folder/addressInfo";}
 
     @PostMapping("/saveAddress")
     public String saveAddress(@ModelAttribute("address") Address address, Principal principal) {
@@ -40,7 +40,7 @@ public class AddressController {
     public String updateAddress(@RequestParam("addressId") long id, Model model) {
         Address address = addressService.getOneById(id);
         model.addAttribute("address", address);
-        return "static/user-pages/profile_folder/addressInfo";}
+        return "user-pages/profile_folder/addressInfo";}
 
     @GetMapping("/deleteAddress")
     public String deleteAddress(@RequestParam("addressId") long id) {

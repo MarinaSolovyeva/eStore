@@ -26,7 +26,6 @@ public class OrderController {
         this.addressService = addressService;
     }
 
-
     @GetMapping("/new/order")
     public String aboutOrder(Model model, Principal principal) {
 
@@ -36,7 +35,7 @@ public class OrderController {
         List<Address> addresses = addressService.getAllAddressesByUser(principal.getName());
         model.addAttribute("addresses", addresses);
 
-        return "static/user-pages/order";
+        return "user-pages/order";
     }
 
     @PostMapping("/saveOrder")
@@ -57,13 +56,13 @@ public class OrderController {
     public String confirmOrder(@RequestParam("orderId") Long id, Model model) {
         Order order = orderService.getOrder(id);
         model.addAttribute("order", order);
-        return "static/user-pages/confirm-order";
+        return "user-pages/confirm-order";
     }
 
     @GetMapping("/orders")
     public String showAllOrders(Model model, Principal principal) {
         List<Order> allOrders = orderService.getAllOrdersByUser(principal.getName());
         model.addAttribute("allOrders", allOrders);
-        return "static/user-pages/profile_folder/order_list";
+        return "user-pages/profile_folder/order_list";
     }
 }

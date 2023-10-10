@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
 public class AddressService {
     private final AddressRepository addressRepository;
     private final UserService userService;

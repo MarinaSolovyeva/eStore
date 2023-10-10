@@ -17,15 +17,15 @@ public class Good {
     @Id
     @Column (name = "id_good")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 //    @Size(min = 9, max = 9, message = "Article should contains 9 characters")
     @Column (name = "article_good")
-    private long article;
+    private Long article;
 
     @NonNull
     @Column (name = "barcode_good")
-    private long barcode;
+    private Long barcode;
 
     @Column (name = "name_good")
     private String name;
@@ -34,18 +34,18 @@ public class Good {
     private String description;
 
     @Column (name = "prime_cost_good")
-    private int primeCost;
+    private Integer primeCost;
 
     @Column (name = "cost_before_sales_good")
-    private int costBeforeSale;
+    private Integer costBeforeSale;
 
     @Column (name = "sale")
-    private int sale;
+    private Integer sale;
 
     @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable (name = "good_receipt",
-            joinColumns = @JoinColumn(name = "id_good"),
-            inverseJoinColumns = @JoinColumn(name = "id_receipt"))
+            joinColumns = @JoinColumn(name = "good_id"),
+            inverseJoinColumns = @JoinColumn(name = "receipt_id"))
     private List <Receipt> receipts;
 
     @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,

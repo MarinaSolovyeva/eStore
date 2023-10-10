@@ -29,7 +29,7 @@ public class UserController {
         UserDetail userDetail = (UserDetail) userDetailService.loadUserByUsername(principal.getName());
         User user = userService.getUser(userDetail.getId());
         model.addAttribute("user", user);
-        return "static/user-pages/profile_folder/user";
+        return "user-pages/profile_folder/user";
     }
 
     @PostMapping("/updateUserInfo")
@@ -40,7 +40,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile() {
-        return "static/user-pages/profile_folder/profile";
+        return "user-pages/profile_folder/profile";
     }
 }
 

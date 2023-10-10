@@ -1,6 +1,6 @@
 package com.project.estore.entityDetail;
 
-public enum UserSex {
+public enum GenderUser {
     м,
     ж
 }

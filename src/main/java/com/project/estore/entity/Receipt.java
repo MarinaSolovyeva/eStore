@@ -23,16 +23,16 @@ public class Receipt {
     @Id
     @Column (name = "id_receipt")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable (name = "good_receipt",
-            joinColumns = @JoinColumn(name = "id_receipt"),
-            inverseJoinColumns = @JoinColumn(name = "id_good"))
+            joinColumns = @JoinColumn(name = "receipt_id"),
+            inverseJoinColumns = @JoinColumn(name = "good_id"))
     private List <Good> goods;
 
     @Column (name = "amount_of_good")
-    private int amountGoods;
+    private Integer amountGoods;
 
     @Column (name = "date_receipt")
     private LocalDateTime date;

@@ -12,9 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserDetailService implements UserDetailsService {
-    /**
-     * Intermediate class to work with Authenticated Manager throw UserDetailsService
-     */
+
     private final UserRepository userRepository;
 
     @Autowired

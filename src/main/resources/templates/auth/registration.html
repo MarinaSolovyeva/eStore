@@ -45,10 +45,10 @@
             <tr>
                 <th> <label> Ваш пол </label> </th>
                 <th>
-                    <div th:each="sexUser : ${T(com.example.estote.entityDetail.UserSex).values()}">
+                    <div th:each="sexUser : ${T(com.project.estore.entityDetail.genderUser).values()}">
                         <div>
-                            <input type="radio" th:field="*{sexUser}" th:value="${sexUser}">
-                            <label class="custom-control-label" th:for="${#ids.prev('sexUser')}" th:text="${sexUser}"> </label>
+                            <input type="radio" th:field="*{genderUser}" th:value="${genderUser}">
+                            <label class="custom-control-label" th:for="${#ids.prev('genderUser')}" th:text="${genderUser}"> </label>
                         </div>
                     </div>
                 </th>

@@ -1,8 +1,22 @@
-version: '3'
-services:
-  mysql-db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: 3221
-      MYSQL_DATABASE: store_project
-      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+#version: '3'
+#services:
+#  mysql-db:
+#    image: mysql:latest
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 3221
+#      MYSQL_DATABASE: store_project
+#      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+#
+#
+#  spring-app:
+#    build:
+#      context: .
+#    ports:
+#      - "8060:8060"
+#    depends_on:
+#      - mysql-db
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/store_project
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: 3221
+#    restart: unless-stopped

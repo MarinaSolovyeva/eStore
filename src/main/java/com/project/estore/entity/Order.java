@@ -1,10 +1,8 @@
 package com.project.estore.entity;
 
 import com.project.estore.entityDetail.OrderDetail;
-import com.project.estore.entityDetail.StatusForOrder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 
 @Entity
 @Table(name = "orders")
@@ -26,7 +24,7 @@ public class Order implements Serializable {
     @Id
     @Column(name = "id_order")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -48,13 +46,12 @@ public class Order implements Serializable {
     @Column(name = "datetime_of_creation")
     private LocalDateTime dateOfCreation;
 
-
     @Column(name = "datetime_of_delivery_order")
     private Date dateForDelivery;
 
-    @OneToOne
-    @JoinColumn(name = "status_id")
-    private StatusForOrder statusId;
+//    @OneToOne
+//    @JoinColumn(name = "status_id")
+//    private StatusForOrder statusId;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
             CascadeType.REFRESH})
@@ -68,6 +65,7 @@ public class Order implements Serializable {
     private transient int amountGoods;
     private transient Double sum;
     private transient List<OrderDetail> orderDetails = new ArrayList<>();
+
     public void aggregate() {
         this.amountGoods = orderDetails.size();
         this.sum = orderDetails.stream()

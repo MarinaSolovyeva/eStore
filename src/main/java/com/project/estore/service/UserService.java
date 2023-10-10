@@ -19,9 +19,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    /**Method to saveUser() delete all old information about User. So if we want to update some info, we should set
-     * all old info, which User doesn't see in profile
-     */
     @Transactional
     public void update(long id, User updatedUser) {
         Optional<User> oldUser = userRepository.findById(id);
